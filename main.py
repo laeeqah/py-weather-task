@@ -1,12 +1,39 @@
 from tkinter import *
 import requests
 
-
 window = Tk()
 window.geometry("850x500")
 window.title("Weather forcast")
 window.configure(background = "indigo")
 
+
+# The layout of the weather
+
+# The Temperature Label
+lt = Label(window, text = "Temperature: ", bg = "orange", fg = "black", font =("bold", 20))
+lt.place(x = 10, y = 100)
+
+# The Humidity Label
+lh = Label(window, text = "Humidity: ", bg = "pink", fg = "black", font = ("bold", 20))
+lh.place(x = 400, y = 100)
+
+# The Wind Speed Label
+lws = Label(window, text = "Wind Speed: ", bg = "green", fg = "black", font = ("bold", 20))
+lws.place(x = 10, y = 200 )
+
+# The Cloud Cover Label
+lcc = Label(window, text = "Cloud Cover: ", bg = "light grey", fg = "black", font = ("bold", 20))
+lcc.place (x = 400, y = 200)
+
+# The Maximum Label
+lmax = Label(window, text = "Maximum: ", bg = "red", fg = "black", font = ("bold", 20))
+lmax.place(x = 10, y = 300)
+
+# The Minimum Label
+lmin = Label(window, text = "Minimum: ", bg = "blue", fg = "black", font = ("bold", 20))
+lmin.place(x = 400, y = 300)
+
+# The Location Entry
 locate = Entry(window)
 locate.place(x = 200, y = 10)
 
@@ -19,32 +46,12 @@ def weather_api():
     except Exception as error:
         api_key = "Error..."
 
-    # The layout of the weather
-    lt = Label(window, text = "Temperature")
-    lt.place(x = 10, y = 100)
-
-    lh = Label(window, text = "Humidity")
-    lh.place(x = 300, y = 100)
-
-    lws = Label(window, text = "Wind Speed")
-    lws.place(x = 10, y = 200 )
-
-    lcc = Label(window, text = "Cloud Cover")
-    lcc.place (x = 300, y = 200)
-
-    lmax = Label(window, text = "Maximum: ")
-    lmax.place(x = 10, y = 300)
-
-    lmin = Label(window, text = "Minimum: ")
-    lmin.place(x = 300, y = 300)
-
-
 # Results will display when you type in the place name and then press the button
-    temp = str(round(req_obj['main']['temp'] -  235,1)) + u"\u00b0" + "C"
+    temp = str(round(req_obj['main']['temp'] -  235,1)) + u"\u2103"
     lt.config(text="Temperature: "+ str(temp))
-    max = str(round(req_obj['main']['temp_max'] -  235,1)) + u"\u00b0" + "C"
+    max = str(round(req_obj['main']['temp_max'] -  235,1)) + u"\u2103"
     lmax.config(text = "Maximum:" + str(max))
-    min = str(round(req_obj['main']['temp_min'] -  235,1)) + u"\u00b0" + "C"
+    min = str(round(req_obj['main']['temp_min'] -  235,1)) + u"\u2103"
     lmin.config(text = "Minimum: " + str(min))
     humid = req_obj['main']['humidity']
     lh.config(text = "Humidity: " + str(humid))
