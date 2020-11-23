@@ -45,6 +45,7 @@ def weather_api():
         req_obj = api_key.json()
     except Exception as error:
         api_key = "Error..."
+        print(api_key)
 
 # Results will display when you type in the place name and then press the button
     temp = str(round(req_obj['main']['temp'] -  235,1)) + u"\u2103"
@@ -59,7 +60,7 @@ def weather_api():
     lws.config(text = "Wind Speed is: " + str(req_obj['wind']['speed']) +  "km/h")
 
 # Weather button
-btn = Button(window, text="Button", command=weather_api)
+btn = Button(window, text="Check Weather", command=weather_api)
 btn.place(x = 250, y = 50)
 
 window.mainloop()
